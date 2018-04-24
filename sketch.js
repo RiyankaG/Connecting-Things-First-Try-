@@ -35,6 +35,7 @@ function setup() {
 }
 
 function draw() {
+	  imageMode(CORNERS);
 	  background(bg);
 	 // imageAlign(CORNERS);
 	//   image(Capture, 0,0, 500, 400);
@@ -49,12 +50,22 @@ function draw() {
 	// INNER_MOUTH : 48 - 59
 	// OUTER_MOUTH : 60 - 65
 	rectMode(CENTER);
-	var mouth= map(mouthHeight, 1, 3, img);
-	// fill ("white");
+
+	var mouth= map(mouthHeight, 1, 5, 10, 200);
+	console.log(mouth);
+	fill(random(0, 255), 0, random(0, 255));
 	// rect(position.x, position.y, mouth,mouth);
 
-	//imageMode(CENTER);
-	image(img, position.x-60, position.y-60, img.width/5, img.height/5);
+	textSize(mouth);
+text('You Deserve to Take Up Space', position.x, position.y);
+
+// rect(100,200,mouth, mouth)
+//changes the height and width of the background
+
+// img.width/5
+
+	// imageMode(CENTER);
+	// image(img, position.x-60, position.y-60, mouth, mouth);
 }
 
 function receiveOsc(address, value) {
@@ -79,7 +90,7 @@ function receiveOsc(address, value) {
 	}
 	else if (address == '/gesture/mouth/height') {
 		mouthHeight = value[0];
-		print(mouthHeight);
+		//print(mouthHeight);
 	}
 	else if (address == '/gesture/eyebrow/left') {
 		eyebrowLeft = value[0];
