@@ -13,17 +13,20 @@ var nostrils = 0;
 var bg;
 var img;
 var capture;
+var j=300;
+var k=100;
+var speed=5;
 
 function preload(){
 	bg= loadImage("images/bg.jpg");
-	img = loadImage("images/2.jpg");
-
+	img = loadImage("images/you.png");
 }
 
 function setup() {
 	
 	createCanvas(windowWidth, windowHeight);
 	setupOsc(8338, 3334);
+	frameRate(15);
 	
 	// capture = createCapture(VIDEO);
 	// capture.size(320,240);
@@ -51,21 +54,58 @@ function draw() {
 	// OUTER_MOUTH : 60 - 65
 	rectMode(CENTER);
 
-	var mouth= map(mouthHeight, 1, 5, 10, 200);
+	var mouth= map(mouthHeight, 1, 2, 10, 200);
 	console.log(mouth);
-	fill(random(0, 255), 0, random(0, 255));
+	// fill(random(0, 255), 0, random(0, 255));
 	// rect(position.x, position.y, mouth,mouth);
 
-	textSize(mouth);
-text('You Deserve to Take Up Space', position.x, position.y);
+// 	textSize(mouth);
+// text('You Deserve to Take Up Space', position.x, position.y);
 
 // rect(100,200,mouth, mouth)
 //changes the height and width of the background
 
 // img.width/5
 
-	// imageMode(CENTER);
-	// image(img, position.x-60, position.y-60, mouth, mouth);
+	imageMode(CENTER);
+	image(img, position.x-60, position.y-60, mouth, mouth);
+
+
+
+k += speed; 
+if(k > height){
+  k = 0; 
+}
+
+j += speed; 
+if(j > width){
+  j = 0; 
+}
+textSize(30);
+// textStyle(ITALIC);
+fill ('white');
+text('0% Presidents of the United States', j-300, k); 
+text('26.4% College Presidents', j-150, k+50);
+text('17% of Film Directors', j, k+100);
+text('5.4% Fortune 500 CEOs', j+150, k+150); 
+text('18% of Equity Partners at legal firms', j+300, k+200);
+text('16% of Medical School Deans', j+450, k+250);
+
+textSize(100);
+textStyle(ITALIC);
+
+fill(random(0, 255), random(0, 255), (0,255));
+text('take', 100, k); 
+text('up', 600, k);
+text('space', 1000, k);
+
+
+// textSize(20);
+// textStyle(ITALIC);
+// fill(random(0, 255), random(0, 255), 0);
+
+
+
 }
 
 function receiveOsc(address, value) {
